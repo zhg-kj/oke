@@ -1,38 +1,37 @@
-.App {
-  text-align: center;
+h1 {
+  color: #DFDEDE;
+  font-family: "Bebas Neue",sans-serif;
+  font-size: 6.875rem;
+  line-height: 5.84375rem;
+  font-weight: 200;
+  letter-spacing: 1px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  z-index: 1;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h4 {
+  color: #DFDEDE;
+  font-family: "Montserrat",sans-serif;
+  line-height: 1.5625rem;
+  font-weight: 500;
+  z-index: 1;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.eighthNote {
+  fill: #39A9DB;
+  position: absolute;
+  z-index: 0;
+  width: 30%;
+  height: auto;
 }
 
-.App-header {
-  background-color: #282c34;
+.homeHeader {
+  background-color: #40BCD8;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
