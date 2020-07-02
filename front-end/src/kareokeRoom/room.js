@@ -8,14 +8,28 @@ export class KareokeRoom extends Component {
 
         this.state = {
             roomList: [],
-            activeRoom: 'No Code Was Entered, Please Enter A Code And Try Again'
+            activeRoom: undefined,
+            defaultMessage: undefined
+        }
+    }
+
+    componentDidMount() {
+        const roomCode = this.props.getRoom();
+        this.setState({activeRoom:roomCode});
+        this.wasCodeEntered(roomCode);
+    }
+
+    wasCodeEntered(roomCode) {
+        if(roomCode === '######') {
+            this.setState({defaultMessage:'No valid room code was entered, please try again.'});
         }
     }
 
     render() {
         return (
             <div className="roomPage">
-                <h4>{this.state.activeRoom}</h4>
+                <h1>{this.state.activeRoom}</h1>
+                <h4>{this.state.defaultMessage}</h4>
                 <ReactPlayer url='https://www.youtube.com/watch?v=VF35dqRydgs' playing={true} loop={true}/>
             </div>
         )

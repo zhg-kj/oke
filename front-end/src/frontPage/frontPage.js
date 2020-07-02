@@ -9,12 +9,12 @@ export class FrontPage extends Component {
     super(props);
 
     this.state = {
-      roomList: [],
-      activeRoom: undefined
+      roomList: []
     };
 
     this.onJoinRoom = this.onJoinRoom.bind(this);
     this.onUpdateRooms = this.onUpdateRooms.bind(this);
+    this.getRoomListForCheck = this.getRoomListForCheck.bind(this);
   }
   
   componentDidMount() {
@@ -30,13 +30,17 @@ export class FrontPage extends Component {
   onJoinRoom(roomCode) {
     for(let i = 0; i < this.state.roomList.length; i++){
       if (this.state.roomList[i].roomCode === roomCode) {
-        this.setState({activeRoom: roomCode});
+        this.props.setRoom(roomCode);
       }
     }
   }
 
   onUpdateRooms(list) {
     this.setState({roomList: list});
+  }
+
+  getRoomListForCheck() {
+    return this.state.roomList;
   }
 
   render() {
@@ -46,7 +50,7 @@ export class FrontPage extends Component {
           <h1><strong>SING WITH FRIENDS.</strong></h1>
           <h4>ANYTIME, ANYWHERE, AT THE TOUCH OF YOUR FINGERTIPS.</h4>
           <EighthNote className="eighthNote"/> 
-          <GenerateButton onUpdateRooms={this.onUpdateRooms}/>
+          <GenerateButton onUpdateRooms={this.onUpdateRooms} getRoomListForCheck={this.getRoomListForCheck}/>
           <JoinButton onJoinRoom={this.onJoinRoom}/>
         </div>
         <div className="frontExplanation">

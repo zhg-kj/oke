@@ -1,83 +1,86 @@
 body{
-    margin: 0;
-  }
-  
-  h1 {
-    color: #DFDEDE;
-    font-family: "Bebas Neue",sans-serif;
-    font-size: 6.875rem;
-    line-height: 5.84375rem;
-    font-weight: 200;
-    letter-spacing: 1px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    z-index: 1;
-  }
-  
-  h2 {
-    color: #DFDEDE;
-    font-family: "Bebas Neue",sans-serif;
-    font-size: 2.5rem;
-    line-height: 3.125rem;
-    font-weight: 700;
-    margin-bottom: 15px;
-    letter-spacing: 1px;
-    z-index: 1;
-  }
-  
-  h4 {
-    color: #DFDEDE;
-    font-family: "Montserrat",sans-serif;
-    line-height: 1.5625rem;
-    font-weight: 500;
-    z-index: 1;
-  }
-  
-  /***SEPARATION LINES***/
-  hr {
-    width: 80%;
-    border-top: 10px dotted #39A9DB;
-    border-right: none;
-    border-left: none;
-    border-bottom: none;
-    position: absolute;
-  }
-  
-  .topLine {
-    top: 2%;
-  }
-  
-  .bottomLine {
-    bottom: 2%;
-  }
-  
-  /***FRONT PAGES***/
-  .eighthNote {
-    fill: #39A9DB;
-    position: absolute;
-    z-index: 0;
-    width: 30%;
-    height: auto;
-  }
-  
-  .frontPage {
-    background-color: #40BCD8;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-  }
-  
-  .frontExplanation {
-    background-color: #40BCD8;
-    min-height: 125vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    position: relative;
-  }
-  
+  margin: 0;
+  -webkit-user-select: none; /* Safari */        
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE10+/Edge */
+  user-select: none; /* Standard */
+}
+
+h1 {
+  color: #DFDEDE;
+  font-family: "Bebas Neue",sans-serif;
+  font-size: 6.875rem;
+  line-height: 5.84375rem;
+  font-weight: 200;
+  letter-spacing: 1px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  z-index: 1;
+}
+
+h2 {
+  color: #DFDEDE;
+  font-family: "Bebas Neue",sans-serif;
+  font-size: 2.5rem;
+  line-height: 3.125rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+  z-index: 1;
+}
+
+h4 {
+  color: #DFDEDE;
+  font-family: "Montserrat",sans-serif;
+  line-height: 1.5625rem;
+  font-weight: 500;
+  z-index: 1;
+}
+
+/***SEPARATION LINES***/
+hr {
+  width: 80%;
+  border-top: 10px dotted #39A9DB;
+  border-right: none;
+  border-left: none;
+  border-bottom: none;
+  position: absolute;
+}
+
+.topLine {
+  top: 2%;
+}
+
+.bottomLine {
+  bottom: 2%;
+}
+
+/***FRONT PAGES***/
+.eighthNote {
+  fill: #39A9DB;
+  position: absolute;
+  z-index: 0;
+  width: 30%;
+  height: auto;
+}
+
+.frontPage {
+  background-color: #40BCD8;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+}
+
+.frontExplanation {
+  background-color: #40BCD8;
+  min-height: 125vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  position: relative;
+}
