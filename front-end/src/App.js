@@ -4,16 +4,50 @@ import './App.css';
 import GenerateButton from './buttons/generateButton';
 import JoinButton from './buttons/joinButton';
 
-class App extends Component{
-  render(){
-    return(
+class App extends Component {
+  constructor(props){
+    super(props);
+
+    this.state = {
+      roomList: [],
+      activeRoom: undefined
+    };
+
+    this.onJoinRoom = this.onJoinRoom.bind(this);
+    this.onUpdateRooms = this.onUpdateRooms.bind(this);
+  }
+  
+  componentDidMount() {
+    this.getRoomList();
+  }
+
+  getRoomList() {
+    fetch('/api/getRoomList')
+    .then(res => res.json())
+    .then(list => this.setState({roomList: list}));
+  }
+
+  onJoinRoom(roomCode) {
+    for(let i = 0; i < this.state.roomList.length; i++){
+      if (this.state.roomList[i].roomCode === roomCode) {
+        this.setState({activeRoom: roomCode});
+      }
+    }
+  }
+
+  onUpdateRooms(list) {
+    this.setState({roomList: list});
+  }
+
+  render() {
+    return (
       <div>
         <div className="frontPage">
           <h1><strong>SING WITH FRIENDS.</strong></h1>
           <h4>ANYTIME, ANYWHERE, AT THE TOUCH OF YOUR FINGERTIPS.</h4>
           <EighthNote className="eighthNote"/> 
-          <GenerateButton />
-          <JoinButton />
+          <GenerateButton onUpdateRooms={this.onUpdateRooms}/>
+          <JoinButton onJoinRoom={this.onJoinRoom}/>
         </div>
         <div className="frontExplanation">
           <hr className="topLine"/>
