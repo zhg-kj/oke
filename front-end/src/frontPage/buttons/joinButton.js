@@ -1,6 +1,7 @@
 //button to join rooms
 import React, {Component} from 'react';
 import './buttons.css';
+import { Link } from 'react-router-dom';
 
 export class JoinButton extends Component  {
     constructor (props) {
@@ -36,7 +37,9 @@ export class JoinButton extends Component  {
                     value={this.state.enteredCode} 
                     onKeyPress={this.enterPressed.bind(this)}
                 />
-                <button className="join" onClick={()=>this.handleClick(this)}>JOIN</button>
+                <Link to='/room'>
+                    <button className="join" onClick={()=>this.handleClick(this)}>JOIN</button>
+                </Link>
             </div>
         );
     }

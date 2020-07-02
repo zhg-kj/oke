@@ -1,63 +1,19 @@
 import React, {Component} from 'react';
-import {ReactComponent as EighthNote} from './svgs/eighthNote.svg';
-import './App.css';
-import GenerateButton from './buttons/generateButton';
-import JoinButton from './buttons/joinButton';
+import FrontPage from './frontPage/frontPage.js';
+import KareokeRoom from './kareokeRoom/room.js';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 class App extends Component {
-  constructor(props){
-    super(props);
-
-    this.state = {
-      roomList: [],
-      activeRoom: undefined
-    };
-
-    this.onJoinRoom = this.onJoinRoom.bind(this);
-    this.onUpdateRooms = this.onUpdateRooms.bind(this);
-  }
-  
-  componentDidMount() {
-    this.getRoomList();
-  }
-
-  getRoomList() {
-    fetch('/api/getRoomList')
-    .then(res => res.json())
-    .then(list => this.setState({roomList: list}));
-  }
-
-  onJoinRoom(roomCode) {
-    for(let i = 0; i < this.state.roomList.length; i++){
-      if (this.state.roomList[i].roomCode === roomCode) {
-        this.setState({activeRoom: roomCode});
-      }
-    }
-  }
-
-  onUpdateRooms(list) {
-    this.setState({roomList: list});
-  }
-
   render() {
     return (
-      <div>
-        <div className="frontPage">
-          <h1><strong>SING WITH FRIENDS.</strong></h1>
-          <h4>ANYTIME, ANYWHERE, AT THE TOUCH OF YOUR FINGERTIPS.</h4>
-          <EighthNote className="eighthNote"/> 
-          <GenerateButton onUpdateRooms={this.onUpdateRooms}/>
-          <JoinButton onJoinRoom={this.onJoinRoom}/>
+      <Router>
+        <div> 
+          <Switch>
+            <Route path='/' exact component={FrontPage}/>
+            <Route path='/room' component={KareokeRoom}/>
+          </Switch>
         </div>
-        <div className="frontExplanation">
-          <hr className="topLine"/>
-          <h2>WHAT IT IS</h2>
-          <p></p>
-          <h2>WHAT IT'S NOT</h2>
-          <p></p>
-          <hr className="bottomLine"/>
-        </div>
-      </div>
+      </Router>
     );
   }
 }
