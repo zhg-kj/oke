@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './room.css'
 import ReactPlayer from 'react-player/youtube';
+import QueueBox from './queueBox/queueBox.js';
 
 export class KareokeRoom extends Component {
     constructor(props){
@@ -11,6 +12,12 @@ export class KareokeRoom extends Component {
             activeRoom: undefined,
             defaultMessage: undefined
         }
+
+        this.getRoomCode = this.getRoomCode.bind(this);
+    }
+
+    getRoomCode(){
+        return this.state.activeRoom;
     }
 
     componentDidMount() {
@@ -32,7 +39,16 @@ export class KareokeRoom extends Component {
                     <h1 className='roomCode'><strong>{this.state.activeRoom}</strong></h1>
                     <h4 className='noCode'><strong>{this.state.defaultMessage}</strong></h4>
                 </div>
-                <ReactPlayer url='https://www.youtube.com/watch?v=VF35dqRydgs' className='reactPlayer'playing={true} loop={true}/>
+                <div className='playerElements'>
+                    <ReactPlayer 
+                        url='https://www.youtube.com/watch?v=VF35dqRydgs' 
+                        className='reactPlayer'
+                        playing={true} 
+                        loop={true}
+                        width={720}
+                        height={405}/>
+                    <QueueBox getRoomCode={this.getRoomCode}/>
+                </div>
             </div>
         )
     }

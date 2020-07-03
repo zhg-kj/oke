@@ -14,6 +14,10 @@
     left: 2%;
 }
 
+.playerElements {
+    width: 1300px;
+}
+
 .roomCode {
     margin: 0;
 }
@@ -23,6 +27,7 @@
 }
 
 .reactPlayer {
-    position:absolute;
-    bottom: 15%;
+    position: absolute;
+    left: 120px;
+    bottom: 10%;
 }

@@ -23,9 +23,11 @@ export class JoinButton extends Component  {
     enterPressed(event) {
         var code = event.keyCode || event.which;
         if(code === 13) { 
-          this.props.onJoinRoom(this.state.keyWord);
+            this.checkRooms();
+            this.props.onJoinRoom(this.state.enteredCode);
         } 
     }
+    //FYI ENTER PRESSED DOES NOT WORK
 
     checkRooms(){
         const roomList = this.props.getRoomListForCheck();
