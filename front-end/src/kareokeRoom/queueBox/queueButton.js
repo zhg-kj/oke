@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './queueBox.css';
+import io from "socket.io-client";
 
 export class QueueButton extends Component {
     constructor (props) {
@@ -7,7 +8,21 @@ export class QueueButton extends Component {
         this.state = {
             enteredURL: ''
         }
-      }
+
+        this.socket = io('localhost:5000');
+
+        this.addToQueue = () => {
+            this.socket.emit('SEND_URL', {
+                enteredURL: this.state.enteredURL,
+                activeRoom: this.props.getRoom()
+            });
+            this.setState({enteredURL: ''});
+        }
+
+        this.socket.on('RECEIVE_QUEUE', newQueue => {
+            props.onAddToQueue(newQueue)
+        });
+    }
     
     handleInput(e) {
         this.setState({enteredURL: e.target.value});
@@ -22,22 +37,6 @@ export class QueueButton extends Component {
         if(code === 13) { 
             this.addToQueue();
         } 
-    }
-
-    addToQueue = async () => {
-        const activeRoom = this.props.getRoom();
-        await fetch('/api/addToQueue', {
-            method: "post",
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({activeRoom: activeRoom, enteredURL: this.state.enteredURL})
-        })
-        .then(res => res.json())
-        .then(newQueue => this.props.onAddToQueue(newQueue));
-
-        this.setState({enteredURL: ''})
     }
 
     render() {
