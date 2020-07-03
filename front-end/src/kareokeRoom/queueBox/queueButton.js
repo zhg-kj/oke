@@ -5,31 +5,39 @@ export class QueueButton extends Component {
     constructor (props) {
         super(props)
         this.state = {
-          enteredURL: '',
-          queue: []
+            enteredURL: ''
         }
       }
-
+    
     handleInput(e) {
         this.setState({enteredURL: e.target.value});
     }
 
     handleClick() {
-        //Do something with the input
-        let tempQueue = this.state.queue;
-        tempQueue.push(this.state.enteredURL);
-        this.setState({queue: tempQueue});
-        //you don't have to do it like this idk what ur tryna do
-        //i was thinking you update the state here and then send the enter array back to the back end and have
-        //the backend update with new queue
+        this.addToQueue();
     }
 
-    //this is so people can just hit enter key instead of hitting button
     enterPressed(event) {
         var code = event.keyCode || event.which;
         if(code === 13) { 
-          //any code from handleClick should be added to here as well
+            this.addToQueue();
         } 
+    }
+
+    addToQueue = async () => {
+        const activeRoom = this.props.getRoom();
+        await fetch('/api/addToQueue', {
+            method: "post",
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({activeRoom: activeRoom, enteredURL: this.state.enteredURL})
+        })
+        .then(res => res.json())
+        .then(newQueue => this.props.onAddToQueue(newQueue));
+
+        this.setState({enteredURL: ''})
     }
 
     render() {

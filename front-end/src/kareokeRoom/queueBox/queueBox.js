@@ -7,24 +7,27 @@ export class QueueBox extends Component {
         super(props);
 
         this.state = {
-            activeRoom: undefined,
-            queue: ['url1','url2']
+            queue: []
         }
-
-        //basically all you need to do is add queues to the state and it should show up
+        this.onAddToQueue = this.onAddToQueue.bind(this);
+        this.getRoom = this.getRoom.bind(this);
     }
 
-    componentDidMount(){
-        this.setState({activeRoom: this.props.getRoomCode()});
+    getRoom() {
+        return this.props.getRoomCode()
     }
+
+    onAddToQueue(newQueue) {
+        this.setState({queue:newQueue});
+    } 
 
     render() {
         return (
             <div className='queueBox'> 
-                <QueueButton/>
+                <QueueButton onAddToQueue={this.onAddToQueue} getRoom={this.getRoom}/>
                 <div className='queues'>
                     {this.state.queue.map((url, index) => (
-                        <p key={index}>{url}</p>
+                        <p className='queuedSong' key={index}>{url}</p>
                     ))}
                 </div>
             </div>

@@ -20,15 +20,6 @@ export class JoinButton extends Component  {
         this.props.onJoinRoom(this.state.enteredCode);
     }
 
-    enterPressed(event) {
-        var code = event.keyCode || event.which;
-        if(code === 13) { 
-            this.checkRooms();
-            this.props.onJoinRoom(this.state.enteredCode);
-        } 
-    }
-    //FYI ENTER PRESSED DOES NOT WORK
-
     checkRooms(){
         const roomList = this.props.getRoomListForCheck();
         const code = this.state.enteredCode;
@@ -49,7 +40,6 @@ export class JoinButton extends Component  {
                     placeholder='Enter A Room Code'
                     onChange={this.handleInput.bind(this)}
                     value={this.state.enteredCode} 
-                    onKeyPress={this.enterPressed.bind(this)}
                 />
                 <Link to={`/${this.checkRooms()}`}>
                     <button className="join" onClick={()=>this.handleClick(this)}>JOIN</button>
