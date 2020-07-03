@@ -20,7 +20,7 @@ export class KareokeRoom extends Component {
     }
 
     wasCodeEntered(roomCode) {
-        if(roomCode === '######') {
+        if(roomCode === 'NANI') {
             this.setState({defaultMessage:'No valid room code was entered, please try again.'});
         }
     }
@@ -28,9 +28,11 @@ export class KareokeRoom extends Component {
     render() {
         return (
             <div className="roomPage">
-                <h1>{this.state.activeRoom}</h1>
-                <h4>{this.state.defaultMessage}</h4>
-                <ReactPlayer url='https://www.youtube.com/watch?v=VF35dqRydgs' playing={true} loop={true}/>
+                <div className='roomCornerText'>
+                    <h1 className='roomCode'><strong>{this.state.activeRoom}</strong></h1>
+                    <h4 className='noCode'><strong>{this.state.defaultMessage}</strong></h4>
+                </div>
+                <ReactPlayer url='https://www.youtube.com/watch?v=VF35dqRydgs' className='reactPlayer'playing={true} loop={true}/>
             </div>
         )
     }

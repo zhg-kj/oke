@@ -8,7 +8,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      activeRoom: '######'
+      activeRoom: undefined
     }
   }
 
@@ -26,7 +26,7 @@ class App extends Component {
         <div> 
           <Switch>
             <Route path='/' exact render={() => <FrontPage setRoom={this.setRoom}/>}/>
-            <Route path='/room' render={() => <KareokeRoom getRoom={this.getRoom}/>}/>
+            <Route path={`/${this.state.activeRoom}`} render={() => <KareokeRoom getRoom={this.getRoom}/>}/>
           </Switch>
         </div>
       </Router>

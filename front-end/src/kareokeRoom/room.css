@@ -7,3 +7,22 @@
     justify-content: center;
     font-size: calc(10px + 2vmin);
 }
+
+.roomCornerText {
+    position: absolute;
+    top: 2%;
+    left: 2%;
+}
+
+.roomCode {
+    margin: 0;
+}
+
+.noCode {
+    margin: 0;
+}
+
+.reactPlayer {
+    position:absolute;
+    bottom: 15%;
+}

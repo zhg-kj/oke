@@ -16,6 +16,7 @@ export class JoinButton extends Component  {
     }
 
     handleClick() {
+        this.checkRooms();
         this.props.onJoinRoom(this.state.enteredCode);
     }
 
@@ -24,6 +25,17 @@ export class JoinButton extends Component  {
         if(code === 13) { 
           this.props.onJoinRoom(this.state.keyWord);
         } 
+    }
+
+    checkRooms(){
+        const roomList = this.props.getRoomListForCheck();
+        const code = this.state.enteredCode;
+        for(let i = 0; i < roomList.length; i++){
+            if(roomList[i].roomCode === code){
+                return code;
+            }
+        }
+        return 'NANI';
     }
 
     render() {
@@ -37,7 +49,7 @@ export class JoinButton extends Component  {
                     value={this.state.enteredCode} 
                     onKeyPress={this.enterPressed.bind(this)}
                 />
-                <Link to='/room'>
+                <Link to={`/${this.checkRooms()}`}>
                     <button className="join" onClick={()=>this.handleClick(this)}>JOIN</button>
                 </Link>
             </div>

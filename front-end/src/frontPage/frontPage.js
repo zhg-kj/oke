@@ -28,10 +28,17 @@ export class FrontPage extends Component {
   }
 
   onJoinRoom(roomCode) {
+    let roomExist;
     for(let i = 0; i < this.state.roomList.length; i++){
       if (this.state.roomList[i].roomCode === roomCode) {
         this.props.setRoom(roomCode);
+        roomExist = true;
+        break;
       }
+    }
+
+    if(!roomExist){
+      this.props.setRoom('NANI');
     }
   }
 
@@ -51,7 +58,7 @@ export class FrontPage extends Component {
           <h4>ANYTIME, ANYWHERE, AT THE TOUCH OF YOUR FINGERTIPS.</h4>
           <EighthNote className="eighthNote"/> 
           <GenerateButton onUpdateRooms={this.onUpdateRooms} getRoomListForCheck={this.getRoomListForCheck}/>
-          <JoinButton onJoinRoom={this.onJoinRoom}/>
+          <JoinButton onJoinRoom={this.onJoinRoom} getRoomListForCheck={this.getRoomListForCheck}/>
         </div>
         <div className="frontExplanation">
           <hr className="topLine"/>
