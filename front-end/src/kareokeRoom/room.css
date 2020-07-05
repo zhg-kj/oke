@@ -31,3 +31,8 @@
     left: 120px;
     bottom: 10%;
 }
+
+.videoSlider {
+    position: absolute;
+    bottom: 5%;
+}

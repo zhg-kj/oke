@@ -20,6 +20,23 @@ io = socket(server);
 io.on('connection', (socket) => {
     console.log(socket.id);
 
+    //SYNC ROOM 
+    socket.on('SYNC_ROOM', data => {
+        console.log('SYNC ROOM REQUEST RECEIVED');
+        const activeRoom = data.activeRoom;
+        socket.join(activeRoom);
+        let newQueue;
+        for(let i = 0; i < rooms.length; i++){
+            if(rooms[i].roomCode === activeRoom){
+                newQueue = rooms[i].songQueue;
+                break;
+            }
+        }
+
+        io.to(activeRoom).emit('RECEIVE_QUEUE', newQueue);
+        console.log('ROOM SYNCED');
+    })
+
     //ADD TO QUEUE
     socket.on('SEND_URL', data => {
         const activeRoom = data.activeRoom;
@@ -37,6 +54,64 @@ io.on('connection', (socket) => {
         }
 
         io.to(activeRoom).emit('RECEIVE_QUEUE', newQueue);
+    })
+
+    //REMOVE FIRST URL IN QUEUE
+    socket.on('NEXT_URL', data => {
+        console.log('NEXT SONG REQUEST RECEIVED');
+        const activeRoom = data.activeRoom;
+        socket.join(activeRoom);
+        let newQueue;
+        for(let i = 0; i < rooms.length; i++){
+            if(rooms[i].roomCode === activeRoom){
+                rooms[i].songQueue.shift();
+                newQueue = rooms[i].songQueue;
+                console.log('Updated Queue');
+                console.log(newQueue);
+                break;
+            }
+        }
+
+        io.to(activeRoom).emit('RECEIVE_NEXT_URL_QUEUE', newQueue);
+        console.log('NEXT SONG REQUEST SUCCESS')
+    })
+
+    //PAUSE PLAY
+    socket.on('PAUSE_PLAY', data => {
+        const activeRoom = data.activeRoom;
+        socket.join(activeRoom);
+        //this might cause a problem, rooms that have not used pause play may not be in sync because they haven't joined room
+        let playingState = data.playing;
+
+        io.to(activeRoom).emit('RECEIVE_PAUSE_PLAY', playingState);
+    })
+
+    //USE SLIDER
+    /*socket.on('USED_SLIDER', data => {
+        console.log('USE SLIDER REQUEST RECEIVED');
+        const activeRoom = data.activeRoom;
+        const e = data.E;
+        socket.join(activeRoom);
+        //this might cause a problem, rooms that have not used slider may not be in sync because they haven't joined room
+        let newPlace = data.played;
+
+        io.to(activeRoom).emit('RECEIVE_PAUSE_PLAY', {newPlace, e});
+        console.log(newPlace, e);
+    })*/
+
+    //FIRST SONG
+    socket.on('FIRST_SONG', data => {
+        const activeRoom = data.activeRoom;
+        socket.join(activeRoom);
+        let first;
+        for(let i = 0; i < rooms.length; i++){
+            if(rooms[i].roomCode === activeRoom){
+                first = rooms[i].songQueue[0];
+                break;
+            }
+        }
+
+        io.to(activeRoom).emit('START_FIRST_SONG', first);
     })
 });
 
@@ -70,6 +145,25 @@ app.post('/api/newRoom', async (req,res) => {
     console.log('Sent Rooms');
     console.log(rooms);
 });
+
+/***GET QUEUE UPON ROOM ENTRY***/
+/*app.post('/api/getInitialQueue', async (req,res) => {
+    console.log('Get Initial Queue Request Received');
+    const activeRoom = req.body.activeRoom;
+    console.log(activeRoom);
+    let queue;
+    for(let i = 0; i < rooms.length; i++){
+        if(rooms[i].roomCode === activeRoom){
+            if(rooms[i].songQueue.length > 0){
+                queue = rooms[i].songQueue;
+            } else {
+                queue = 'None';
+            }
+            break;
+        }
+    }
+    res.json(queue);
+});*/
 
 // Handles any requests that don't match the ones above
 app.get('*', (req,res) =>{

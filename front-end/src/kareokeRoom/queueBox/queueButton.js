@@ -22,6 +22,20 @@ export class QueueButton extends Component {
         this.socket.on('RECEIVE_QUEUE', newQueue => {
             props.onAddToQueue(newQueue)
         });
+
+        this.syncRoom = () => {
+            this.socket.emit('SYNC_ROOM', {
+                activeRoom: this.props.getRoom()
+            });
+        }
+
+        this.socket.on('RECEIVE_QUEUE', newQueue => {
+            props.onAddToQueue(newQueue)
+        });
+    }
+
+    componentDidMount() {
+        setTimeout(() => this.syncRoom(),1000);
     }
     
     handleInput(e) {
@@ -38,6 +52,24 @@ export class QueueButton extends Component {
             this.addToQueue();
         } 
     }
+
+    /*getInitialQueue = async () => {
+        const activeRoom = this.props.getRoom();
+        await fetch('/api/getInitialQueue', {
+            method: "post",
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({activeRoom: activeRoom})
+        })
+        .then(res => res.json())
+        .then(queue => {
+            if(queue !== "None") {
+                this.props.onAddToQueue(queue)
+            }
+        });
+    }*/
 
     render() {
         return (

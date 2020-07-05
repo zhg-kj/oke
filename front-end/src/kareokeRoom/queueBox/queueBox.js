@@ -6,19 +6,16 @@ export class QueueBox extends Component {
     constructor(props){
         super(props);
 
-        this.state = {
-            queue: []
-        }
         this.onAddToQueue = this.onAddToQueue.bind(this);
         this.getRoom = this.getRoom.bind(this);
     }
 
     getRoom() {
-        return this.props.getRoomCode()
+        return this.props.getRoomCode();
     }
 
     onAddToQueue(newQueue) {
-        this.setState({queue:newQueue});
+        this.props.setQueue(newQueue);
     } 
 
     render() {
@@ -26,7 +23,7 @@ export class QueueBox extends Component {
             <div className='queueBox'> 
                 <QueueButton onAddToQueue={this.onAddToQueue} getRoom={this.getRoom}/>
                 <div className='queues'>
-                    {this.state.queue.map((url, index) => (
+                    {this.props.queue.map((url, index) => (
                         <p className='queuedSong' key={index}>{url}</p>
                     ))}
                 </div>
