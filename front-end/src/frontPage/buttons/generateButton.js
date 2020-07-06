@@ -4,6 +4,13 @@ import './buttons.css';
 import GenerateRandomCode from 'react-random-code-generator';
 
 export class GenerateButton extends Component {
+    constructor(props){
+        super(props);
+
+        this.state = {
+            roomCode: '######'
+        }
+    }
 
     onCreateNewRoom = async () => {
         const newRoomCode = GenerateRandomCode.TextCode(6).toUpperCase();
@@ -28,6 +35,7 @@ export class GenerateButton extends Component {
             })
             .then(res => res.json())
             .then(list => this.props.onUpdateRooms(list));
+            this.setState({roomCode:newRoomCode})
         } else {
             this.onCreateNewRoom();
         }
@@ -35,7 +43,10 @@ export class GenerateButton extends Component {
 
     render() {
         return (
-            <button className="generate" onClick={this.onCreateNewRoom}>CREATE</button>
+            <div>
+                <button className="generate" onClick={this.onCreateNewRoom}>CREATE</button>
+                <p>{this.state.roomCode}</p>
+            </div>
         );
     }
 }
