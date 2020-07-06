@@ -23,8 +23,8 @@ export class QueueButton extends Component {
             props.onAddToQueue(newQueue)
         });
 
-        this.syncRoom = () => {
-            this.socket.emit('SYNC_ROOM', {
+        this.syncQueue = () => {
+            this.socket.emit('SYNC_QUEUE', {
                 activeRoom: this.props.getRoom()
             });
         }
@@ -35,7 +35,7 @@ export class QueueButton extends Component {
     }
 
     componentDidMount() {
-        setTimeout(() => this.syncRoom(),1000);
+        setTimeout(() => this.syncQueue(),1000);
     }
     
     handleInput(e) {

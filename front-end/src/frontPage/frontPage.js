@@ -28,17 +28,11 @@ export class FrontPage extends Component {
   }
 
   onJoinRoom(roomCode) {
-    let roomExist;
     for(let i = 0; i < this.state.roomList.length; i++){
       if (this.state.roomList[i].roomCode === roomCode) {
         this.props.setRoom(roomCode);
-        roomExist = true;
         break;
       }
-    }
-
-    if(!roomExist){
-      this.props.setRoom('NANI');
     }
   }
 

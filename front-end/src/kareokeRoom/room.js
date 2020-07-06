@@ -3,6 +3,7 @@ import './room.css'
 import ReactPlayer from 'react-player/youtube';
 import QueueBox from './queueBox/queueBox.js';
 import io from "socket.io-client";
+import { Redirect } from "react-router-dom";
 
 export class KareokeRoom extends Component {
     constructor(props){
@@ -10,6 +11,7 @@ export class KareokeRoom extends Component {
 
         this.state = {
             roomList: [],
+            redirect: null,
             activeRoom: undefined,
             defaultMessage: undefined,
             queue: [],
@@ -28,6 +30,17 @@ export class KareokeRoom extends Component {
 
         this.socket = io('localhost:5000');
 
+        //SYNC ROOM
+        this.syncRoom = () => {
+            this.socket.emit('SYNC_ROOM', {
+                activeRoom: this.state.activeRoom
+            });
+        }
+
+        this.socket.on('SYNCING_UP', confirm => {
+            console.log(confirm);
+        });
+
         //REMOVE FIRST URL IN QUEUE
         this.nextInQueue = () => {
             this.socket.emit('NEXT_URL', {
@@ -36,8 +49,13 @@ export class KareokeRoom extends Component {
         }
 
         this.socket.on('RECEIVE_NEXT_URL_QUEUE', newQueue => {
-            this.setState({ currentVideo: null, playing: true }, () => {this.pausePlay(); this.load(newQueue);});
-            this.setState({queue:newQueue});
+            if(newQueue.length === 0){
+                this.closeRoom();
+                this.setState({redirect: '/closed'});
+            } else {
+                this.setState({ currentVideo: null, playing: true }, () => {this.pausePlay(); this.load(newQueue);});
+                this.setState({queue:newQueue});
+            }
         });
 
         //PAUSE PLAY
@@ -66,41 +84,35 @@ export class KareokeRoom extends Component {
             this.player.seekTo(parseFloat(data.e.target.value));
         });*/
 
-        //FIRST SONG
-        this.firstSong = () => {
-            this.socket.emit('FIRST_SONG', {
-                activeRoom: this.state.activeRoom
-            });
-        }
-
-        this.socket.on('START_FIRST_SONG', first => {
-            this.load(first);
-        });
-        //PROBLEM IF SOMEONE JOINS MIDWAY WHEN MULTIPLE SONGS ARE IN QUEUE THEY ARE NOT SYNCED
     }
 
     componentDidMount() {
         const roomCode = this.props.getRoom();
-        this.setState({activeRoom:roomCode});
-        this.wasCodeEntered(roomCode);
+        this.setState({activeRoom:roomCode}, () => {this.syncRoom()});
     }
 
     getRoomCode() {
         return this.state.activeRoom;
     }
 
-    setQueue(newQueue) {
-        this.setState({queue: newQueue}, () => { 
-            if(newQueue.length === 1) {
-                this.onFirstSongEntered();
-            }
-        });
+    closeRoom() {
+        fetch('/api/closeRoom', {
+            method: "post",
+            headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({activeRoom: this.state.activeRoom})
+        })
+        .then(res => res.json());
     }
 
-    wasCodeEntered(roomCode) {
-        if(roomCode === 'NANI') {
-            this.setState({defaultMessage:'No valid room code was entered, please try again.'});
-        }
+    setQueue(newQueue) {
+        this.setState({queue: newQueue}, () => { 
+            if((newQueue.length > 0) && (this.state.currentVideo === null) && (this.state.playing === false)) {
+                this.load(newQueue[0]);
+            }
+        });
     }
 
     /***LOAD VIDEO***/
@@ -110,10 +122,6 @@ export class KareokeRoom extends Component {
             played: 0,
             loaded: 0
         });
-    }
-
-    onFirstSongEntered() {
-        this.firstSong();
     }
 
     /***PLAY BUTTON***/
@@ -138,7 +146,7 @@ export class KareokeRoom extends Component {
     handleSeekMouseUp = e => {
         this.setState({ seeking: false });
         this.useSlider(e);
-    }*/
+    }
 
     handleProgress = state => {
         console.log('onProgress', state)
@@ -146,20 +154,19 @@ export class KareokeRoom extends Component {
         if (!this.state.seeking) {
           this.setState(state)
         }
-    }
-
-    /***DURATION***/
-    handleDuration = (duration) => {
-        console.log('onDuration', duration)
-        this.setState({ duration })
-    }
+    }*/
 
     ref = player => {
         this.player = player
     }
 
     render() {
-        const { currentVideo, playing, played, duration, loaded } = this.state
+        const { currentVideo, playing } = this.state
+
+        if (this.state.redirect) {
+            this.closeRoom();
+            return <Redirect to={this.state.redirect} />
+        } 
 
         return (
             <div className="roomPage">
@@ -173,7 +180,6 @@ export class KareokeRoom extends Component {
                         url={currentVideo} 
                         playing={playing} 
                         onEnded={this.handleStop}
-                        onDuration={this.handleDuration}
 
                         className='reactPlayer'
                         width={720}

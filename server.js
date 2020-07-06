@@ -18,11 +18,18 @@ const socket = require('socket.io');
 io = socket(server);
 
 io.on('connection', (socket) => {
-    console.log(socket.id);
 
-    //SYNC ROOM 
+    //SYNC ROOM
     socket.on('SYNC_ROOM', data => {
-        console.log('SYNC ROOM REQUEST RECEIVED');
+        const activeRoom = data.activeRoom;
+        socket.join(activeRoom);
+        let confirm = 'Synced'
+
+        io.to(activeRoom).emit('SYNCING_UP', confirm);
+    })
+
+    //SYNC QUEUE
+    socket.on('SYNC_QUEUE', data => {
         const activeRoom = data.activeRoom;
         socket.join(activeRoom);
         let newQueue;
@@ -34,7 +41,6 @@ io.on('connection', (socket) => {
         }
 
         io.to(activeRoom).emit('RECEIVE_QUEUE', newQueue);
-        console.log('ROOM SYNCED');
     })
 
     //ADD TO QUEUE
@@ -46,8 +52,6 @@ io.on('connection', (socket) => {
         for(let i = 0; i < rooms.length; i++){
             if(rooms[i].roomCode === activeRoom){
                 rooms[i].songQueue.push(enteredURL);
-                console.log('Updated Queue');
-                console.log(rooms);
                 newQueue = rooms[i].songQueue;
                 break;
             }
@@ -58,7 +62,6 @@ io.on('connection', (socket) => {
 
     //REMOVE FIRST URL IN QUEUE
     socket.on('NEXT_URL', data => {
-        console.log('NEXT SONG REQUEST RECEIVED');
         const activeRoom = data.activeRoom;
         socket.join(activeRoom);
         let newQueue;
@@ -66,14 +69,11 @@ io.on('connection', (socket) => {
             if(rooms[i].roomCode === activeRoom){
                 rooms[i].songQueue.shift();
                 newQueue = rooms[i].songQueue;
-                console.log('Updated Queue');
-                console.log(newQueue);
                 break;
             }
         }
 
         io.to(activeRoom).emit('RECEIVE_NEXT_URL_QUEUE', newQueue);
-        console.log('NEXT SONG REQUEST SUCCESS')
     })
 
     //PAUSE PLAY
@@ -98,21 +98,6 @@ io.on('connection', (socket) => {
         io.to(activeRoom).emit('RECEIVE_PAUSE_PLAY', {newPlace, e});
         console.log(newPlace, e);
     })*/
-
-    //FIRST SONG
-    socket.on('FIRST_SONG', data => {
-        const activeRoom = data.activeRoom;
-        socket.join(activeRoom);
-        let first;
-        for(let i = 0; i < rooms.length; i++){
-            if(rooms[i].roomCode === activeRoom){
-                first = rooms[i].songQueue[0];
-                break;
-            }
-        }
-
-        io.to(activeRoom).emit('START_FIRST_SONG', first);
-    })
 });
 
 //CONVERT JSON STRINGS
@@ -125,15 +110,11 @@ app.use(express.static(path.join(__dirname, 'front-end/build')));
 
 /***GET LIST OF ROOMS***/
 app.get('/api/getRoomList', async (req,res) => {
-    console.log('Request For Room List Recieved');
     res.json(rooms);
-    console.log('Sent Rooms');
-    console.log(rooms);
 });
 
 /***CREATE NEW ROOM***/
 app.post('/api/newRoom', async (req,res) => {
-    console.log('Room Create Request Recieved');
     const newRoom = {
         roomCode: req.body.roomCode,
         currentSongLink: '',
@@ -146,24 +127,17 @@ app.post('/api/newRoom', async (req,res) => {
     console.log(rooms);
 });
 
-/***GET QUEUE UPON ROOM ENTRY***/
-/*app.post('/api/getInitialQueue', async (req,res) => {
-    console.log('Get Initial Queue Request Received');
+/***CLOSE ROOM***/
+app.post('/api/closeRoom', async (req,res) => {
     const activeRoom = req.body.activeRoom;
-    console.log(activeRoom);
-    let queue;
     for(let i = 0; i < rooms.length; i++){
         if(rooms[i].roomCode === activeRoom){
-            if(rooms[i].songQueue.length > 0){
-                queue = rooms[i].songQueue;
-            } else {
-                queue = 'None';
-            }
+            rooms.splice(i,1);
             break;
         }
     }
-    res.json(queue);
-});*/
+    res.json('Room removed');
+});
 
 // Handles any requests that don't match the ones above
 app.get('*', (req,res) =>{
