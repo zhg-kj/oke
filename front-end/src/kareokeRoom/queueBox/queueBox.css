@@ -27,6 +27,17 @@
     border: none;
 }
 
+.addNameInput {
+    position: absolute;
+    bottom: 0;
+    margin: 10px;
+    right: 0;
+    height: 40px;
+    width: 225px;
+    border-radius: 20px;
+    border: none;
+}
+
 .queues {
     position: absolute;
     top: 60px;

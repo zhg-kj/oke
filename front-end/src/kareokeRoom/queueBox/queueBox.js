@@ -6,6 +6,10 @@ export class QueueBox extends Component {
     constructor(props){
         super(props);
 
+        this.state = {
+            songNames: []
+        }
+
         this.onAddToQueue = this.onAddToQueue.bind(this);
         this.getRoom = this.getRoom.bind(this);
     }
@@ -24,7 +28,13 @@ export class QueueBox extends Component {
                 <QueueButton onAddToQueue={this.onAddToQueue} getRoom={this.getRoom}/>
                 <div className='queues'>
                     {this.props.queue.map((url, index) => (
-                        <p className='queuedSong' key={index}>{url}</p>
+                        <a 
+                            href={url} 
+                            target='_blank' 
+                            rel="noopener noreferrer"
+                            className='queuedSong' 
+                            key={index}
+                        >{index === 0 ? 'Current Song' : `Song #${index+1}`}</a>
                     ))}
                 </div>
             </div>

@@ -118,7 +118,8 @@ app.post('/api/newRoom', async (req,res) => {
     const newRoom = {
         roomCode: req.body.roomCode,
         currentSongLink: '',
-        songQueue: []
+        songQueue: [],
+        songNames: []
     }
     rooms.push(newRoom);
     var roomList = rooms;

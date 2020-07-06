@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import './queueBox.css';
 import io from "socket.io-client";
 
@@ -11,6 +11,18 @@ export class QueueButton extends Component {
 
         this.socket = io('localhost:5000');
 
+        //SYNC QUEUE
+        this.syncQueue = () => {
+            this.socket.emit('SYNC_QUEUE', {
+                activeRoom: this.props.getRoom()
+            });
+        }
+
+        this.socket.on('RECEIVE_QUEUE', newQueue => {
+            props.onAddToQueue(newQueue);
+        });
+
+        //ADD URL
         this.addToQueue = () => {
             this.socket.emit('SEND_URL', {
                 enteredURL: this.state.enteredURL,
@@ -22,54 +34,39 @@ export class QueueButton extends Component {
         this.socket.on('RECEIVE_QUEUE', newQueue => {
             props.onAddToQueue(newQueue)
         });
-
-        this.syncQueue = () => {
-            this.socket.emit('SYNC_QUEUE', {
-                activeRoom: this.props.getRoom()
-            });
-        }
-
-        this.socket.on('RECEIVE_QUEUE', newQueue => {
-            props.onAddToQueue(newQueue)
-        });
     }
 
     componentDidMount() {
         setTimeout(() => this.syncQueue(),1000);
     }
     
-    handleInput(e) {
+    handleURLInput(e) {
         this.setState({enteredURL: e.target.value});
     }
 
     handleClick() {
-        this.addToQueue();
+        let valid = this.validateURL(this.state.enteredURL);
+        if(valid){
+            this.addToQueue();
+        } else {
+            console.log('Invalid URL')
+        }
     }
 
     enterPressed(event) {
         var code = event.keyCode || event.which;
         if(code === 13) { 
-            this.addToQueue();
+            this.handleClick();
         } 
     }
 
-    /*getInitialQueue = async () => {
-        const activeRoom = this.props.getRoom();
-        await fetch('/api/getInitialQueue', {
-            method: "post",
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({activeRoom: activeRoom})
-        })
-        .then(res => res.json())
-        .then(queue => {
-            if(queue !== "None") {
-                this.props.onAddToQueue(queue)
-            }
-        });
-    }*/
+    validateURL(url) {
+        var p = /^(?:https?:\/\/)?(?:m\.|www\.)?(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
+        if(url.match(p)){
+            return url.match(p)[1];
+        }
+        return false;
+    }
 
     render() {
         return (
@@ -78,7 +75,7 @@ export class QueueButton extends Component {
                     className="addQueueInput"
                     type='text'
                     placeholder='Enter A Song URL'
-                    onChange={this.handleInput.bind(this)}
+                    onChange={this.handleURLInput.bind(this)}
                     value={this.state.enteredURL} 
                     onKeyPress={this.enterPressed.bind(this)}
                 />

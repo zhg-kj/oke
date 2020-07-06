@@ -15,6 +15,7 @@ export class KareokeRoom extends Component {
             activeRoom: undefined,
             defaultMessage: undefined,
             queue: [],
+            songNames: [],
 
             //STATES FOR PLAYER
             seaking: false,
@@ -184,7 +185,11 @@ export class KareokeRoom extends Component {
                         className='reactPlayer'
                         width={720}
                         height={405}/>
-                    <QueueBox getRoomCode={this.getRoomCode} setQueue={this.setQueue} queue={this.state.queue}/>
+                    <QueueBox 
+                        getRoomCode={this.getRoomCode} 
+                        setQueue={this.setQueue} 
+                        queue={this.state.queue}
+                    />
                     <button onClick={this.handlePlayPause}>{playing ? 'Pause' : 'Play'}</button>
                     <button onClick={this.handleStop}>Skip</button>
                     {/*<input
