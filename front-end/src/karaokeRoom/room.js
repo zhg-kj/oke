@@ -5,7 +5,7 @@ import QueueBox from './queueBox/queueBox.js';
 import io from "socket.io-client";
 import { Redirect } from "react-router-dom";
 
-export class KareokeRoom extends Component {
+export class KaraokeRoom extends Component {
     constructor(props){
         super(props);
 
@@ -206,4 +206,4 @@ export class KareokeRoom extends Component {
     }
 }
 
-export default KareokeRoom
+export default KaraokeRoom
