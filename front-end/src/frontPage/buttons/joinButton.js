@@ -39,7 +39,7 @@ export class JoinButton extends Component  {
                 <input 
                     className="roomCodeInput"
                     type='text'
-                    placeholder='Enter A Room Code'
+                    placeholder='Enter Your Room Code'
                     onChange={this.handleInput.bind(this)}
                     value={this.state.enteredCode} 
                 />

@@ -1,50 +1,161 @@
 button {
-    width: 120px;
+    width: 185px;
     height: 60px;
     border: none;
-    background-color: #39A9DB;
+    background-color: rgba(0, 0, 0, 0);
     font-size: 20px;
     font-family: "Bebas Neue",sans-serif;
-    font-weight: bolder;
-    color: #DFDEDE;
+    font-weight: 100;
+    letter-spacing: 0.1em;
+    color: #8f8f8f;
+    text-shadow: 
+    .025vw 0vw .25vw #8f8f8f, .05vw 0vw .25vw #8f8f8f, .0075vw 0vw .25vw #8f8f8f, 
+    .025vw 0vw   0vw #5f5f5f, .05vw 0vw   0vw #5f5f5f, .0075vw 0vw   0vw #5f5f5f,
+    .025vw 0vw   1vw #2e2e2e, .05vw 0vw   1vw #2e2e2e, .0075vw 0vw   5vw #2e2e2e; 
+    border-radius: 0.25rem;
+}
+
+@keyframes lightUpText{
+    0%   { text-shadow: 
+        .025vw 0vw .25vw #8f8f8f, .05vw 0vw .25vw #8f8f8f, .0075vw 0vw .25vw #8f8f8f, 
+        .025vw 0vw   0vw #5f5f5f, .05vw 0vw   0vw #5f5f5f, .0075vw 0vw   0vw #5f5f5f,
+        .025vw 0vw   1vw #2e2e2e, .05vw 0vw   1vw #2e2e2e, .0075vw 0vw   5vw #2e2e2e; }
+    15%   { text-shadow: 
+        .025vw 0vw .25vw #ffeed8, .05vw 0vw .25vw #ffeed8, .0075vw 0vw .25vw #ffeed8, 
+        .025vw 0vw   0vw #f2b457, .05vw 0vw   0vw #f2b457, .0075vw 0vw   0vw #f2b457,
+        .025vw 0vw   1vw #a5620a, .05vw 0vw   1vw #a5620a, .0075vw 0vw   5vw #a5620a; 
+        color: #ffeed8; }
+    30%  { text-shadow: 
+        .025vw 0vw .25vw #8f8f8f, .05vw 0vw .25vw #8f8f8f, .0075vw 0vw .25vw #8f8f8f, 
+        .025vw 0vw   0vw #5f5f5f, .05vw 0vw   0vw #5f5f5f, .0075vw 0vw   0vw #5f5f5f,
+        .025vw 0vw   1vw #2e2e2e, .05vw 0vw   1vw #2e2e2e, .0075vw 0vw   5vw #2e2e2e; 
+        color: #8f8f8f; }
+    45%  { text-shadow: 
+        .025vw 0vw .25vw #ffeed8, .05vw 0vw .25vw #ffeed8, .0075vw 0vw .25vw #ffeed8, 
+        .025vw 0vw   0vw #f2b457, .05vw 0vw   0vw #f2b457, .0075vw 0vw   0vw #f2b457,
+        .025vw 0vw   1vw #a5620a, .05vw 0vw   1vw #a5620a, .0075vw 0vw   5vw #a5620a; 
+        color: #ffeed8; }
+    60%  { text-shadow: 
+        .025vw 0vw .25vw #8f8f8f, .05vw 0vw .25vw #8f8f8f, .0075vw 0vw .25vw #8f8f8f, 
+        .025vw 0vw   0vw #5f5f5f, .05vw 0vw   0vw #5f5f5f, .0075vw 0vw   0vw #5f5f5f,
+        .025vw 0vw   1vw #2e2e2e, .05vw 0vw   1vw #2e2e2e, .0075vw 0vw   5vw #2e2e2e; 
+        color: #8f8f8f; }
+    100% { text-shadow: 
+        .025vw 0vw .25vw #ffeed8, .05vw 0vw .25vw #ffeed8, .0075vw 0vw .25vw #ffeed8, 
+        .025vw 0vw   0vw #f2b457, .05vw 0vw   0vw #f2b457, .0075vw 0vw   0vw #f2b457,
+        .025vw 0vw  .1vw #f2b457, .05vw 0vw  .1vw #f2b457, .0075vw 0vw  .1vw #f2b457,
+        .025vw 0vw   2vw #f2b457, .05vw 0vw   2vw #f2b457, .0075vw 0vw   2vw #f2b457, 
+        .025vw 0vw   1vw #a5620a, .05vw 0vw   1vw #a5620a, .0075vw 0vw   5vw #a5620a, 
+        .025vw 0vw   5vw #a5620a, .05vw 0vw  20vw #a5620a, .0075vw 0vw  10vw #a5620a,
+        .025vw 0vw  10vw #a5620a, .05vw 0vw  30vw #a5620a, .0075vw 0vw  10vw #a5620a; 
+        color: #ffeed8; }
+}
+
+button:hover {
+    animation: lightUpText 0.6s linear forwards;
+}
+
+@keyframes buttonClick {
+    0%   { box-shadow:
+        0 0 0.1vw  0.4vw #ffeed8,   
+        0 0 0.4vw  0.6vw #f2b457, 
+        0 0   4vw  0.4vw #a5620a,
+        inset 0 0 1.5vw  0.4vw #a5620a,
+        inset 0 0 0.4vw  0.2vw #f2b457,
+        inset 0 0 0.5vw  0.2vw #ffeed8; }
+    50%  { box-shadow:
+        0 0 0.1vw  0.4vw #ffeed8,   
+        0 0 0.4vw  0.6vw #f2b457, 
+        0 0   4vw  0.4vw #a5620a,
+        inset 0 0 1.5vw  0.4vw #a5620a,
+        inset 0 0 0.4vw  0.2vw #f2b457,
+        inset 0 0 0.5vw  0.2vw #ffeed8; }
+    100% {}
+}
+
+button:focus {
+    outline: 0;
+    animation: buttonClick 0.6s linear;
+    text-shadow: 
+        .025vw 0vw .25vw #ffeed8, .05vw 0vw .25vw #ffeed8, .0075vw 0vw .25vw #ffeed8, 
+        .025vw 0vw   0vw #f2b457, .05vw 0vw   0vw #f2b457, .0075vw 0vw   0vw #f2b457,
+        .025vw 0vw  .1vw #f2b457, .05vw 0vw  .1vw #f2b457, .0075vw 0vw  .1vw #f2b457,
+        .025vw 0vw   2vw #f2b457, .05vw 0vw   2vw #f2b457, .0075vw 0vw   2vw #f2b457, 
+        .025vw 0vw   1vw #a5620a, .05vw 0vw   1vw #a5620a, .0075vw 0vw   5vw #a5620a, 
+        .025vw 0vw   5vw #a5620a, .05vw 0vw  20vw #a5620a, .0075vw 0vw  10vw #a5620a,
+        .025vw 0vw  10vw #a5620a, .05vw 0vw  30vw #a5620a, .0075vw 0vw  10vw #a5620a; 
+    color: #ffeed8; 
 }
 
 input[type="text" i] {
     padding: none;
+    color: #ffeed8;
+    text-align: center;
+    text-shadow:  
+        .025vw 0vw   0.25vw #f2b457, .05vw 0vw   0.25vw #f2b457, .0075vw 0vw   0.25vw #f2b457,
+        .025vw 0vw      1vw #a5620a, .05vw 0vw      1vw #a5620a, .0075vw 0vw      5vw #a5620a;
 }
 
-button:hover {
-    filter: brightness(97.5%);
+input:focus {
+    outline: 0;
+    box-shadow:
+        0 0 0.1vw  0.4vw #ffeed8,   
+        0 0 0.4vw  0.6vw #f2b457, 
+        0 0   4vw  0.4vw #a5620a,
+        inset 0 0 1.5vw  0.4vw #a5620a,
+        inset 0 0 0.4vw  0.2vw #f2b457,
+        inset 0 0 0.5vw  0.2vw #ffeed8;
+}
+
+::placeholder {
+    text-align: center;
+    color: #ffeed8;
+    text-shadow:  
+        .025vw 0vw   0.25vw #f2b457, .05vw 0vw   0.25vw #f2b457, .0075vw 0vw   0.25vw #f2b457,
+        .025vw 0vw      1vw #a5620a, .05vw 0vw      1vw #a5620a, .0075vw 0vw      5vw #a5620a; 
 }
 
 .generate {
-    position: absolute;
-    bottom: 5%;
-    left: 40.25%;
-    border-radius: 40px 0 0 40px;
-    text-align: right;
-    padding-right: 15px;
+    display: block;
+    margin: 1rem auto 2rem auto;
+    height: 1.5em;
+}
+
+.createdRoom {
+    display: block;
+    margin: 1rem auto;
+    height: 1.5em;
+    font-size: 20px;
+    font-family: "Bebas Neue",sans-serif;
+    font-weight: 100;
+    letter-spacing: 0.1em;
+    color: #ffeed8;
+    text-shadow: 
+        .025vw 0vw .25vw #ffeed8, .05vw 0vw .25vw #ffeed8, .0075vw 0vw .25vw #ffeed8, 
+        .025vw 0vw   0vw #f2b457, .05vw 0vw   0vw #f2b457, .0075vw 0vw   0vw #f2b457,
+        .025vw 0vw  .1vw #f2b457, .05vw 0vw  .1vw #f2b457, .0075vw 0vw  .1vw #f2b457,
+        .025vw 0vw   2vw #f2b457, .05vw 0vw   2vw #f2b457, .0075vw 0vw   2vw #f2b457, 
+        .025vw 0vw   1vw #a5620a, .05vw 0vw   1vw #a5620a, .0075vw 0vw   5vw #a5620a, 
+        .025vw 0vw   5vw #a5620a, .05vw 0vw  20vw #a5620a, .0075vw 0vw  10vw #a5620a,
+        .025vw 0vw  10vw #a5620a, .05vw 0vw  30vw #a5620a, .0075vw 0vw  10vw #a5620a;
 }
 
 .join {
-    position: absolute;
-    bottom: 5%;
-    right: 40.25%;
-    border-radius: 0 40px 40px 0;
-    text-align: left;
-    padding-left: 30px;
+    display: block;
+    margin: 1rem auto;
+    height: 1.5em;
 }
 
 .roomCodeInput {
-    width: 200px;
-    height: 58px;
-    position: absolute;
-    bottom: 5%;
-    left: 50.25%;
-    border-radius: 0 40px 40px 0;
-    text-align: left;
-    padding-left: 150px;
-    border: none;
-    outline: none;
-    background-color: #DFDEDE;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    background-color: rgba(0, 0, 0, 0);
+    box-shadow:
+        0 0 0.025vw  0.2vw #ffeed8,   
+        0 0 0.2vw   0.3vw #f2b457, 
+        0 0   2vw   0.2vw #a5620a,
+        inset 0 0 0.5vw   0.2vw #a5620a,
+        inset 0 0 0.2vw   0.1vw #f2b457,
+        inset 0 0 0.25vw  0.1vw #ffeed8;
+    margin: 1rem 1rem 1rem 1rem;
 }

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {ReactComponent as EighthNote} from './svgs/eighthNote.svg';
+import Microphone from './pngs/microphone.png';
 import './frontPage.css';
 import GenerateButton from './buttons/generateButton';
 import JoinButton from './buttons/joinButton';
@@ -46,21 +46,23 @@ export class FrontPage extends Component {
 
   render() {
     return (
-      <div> 
-        <div className="frontPage">
-          <h1><strong>SING WITH FRIENDS.</strong></h1>
-          <h4>ANYTIME, ANYWHERE, AT THE TOUCH OF YOUR FINGERTIPS.</h4>
-          <EighthNote className="eighthNote"/> 
-          <GenerateButton onUpdateRooms={this.onUpdateRooms} getRoomListForCheck={this.getRoomListForCheck}/>
-          <JoinButton onJoinRoom={this.onJoinRoom} getRoomListForCheck={this.getRoomListForCheck}/>
+      <div className="frontPage"> 
+        <div className="pageOneBox">
+          <div className="titleWrapper">
+            <h1><strong>OKE</strong></h1>
+            <img className="microphone" src={Microphone} alt="Microphone" />
+            <h4>the Online Karaoke Experience</h4>
+          </div>
+          <div className="buttonWrapper">
+            <GenerateButton onUpdateRooms={this.onUpdateRooms} getRoomListForCheck={this.getRoomListForCheck}/>
+            <JoinButton onJoinRoom={this.onJoinRoom} getRoomListForCheck={this.getRoomListForCheck}/>
+          </div>
         </div>
         <div className="frontExplanation">
-          <hr className="topLine"/>
           <h2>WHAT IT IS</h2>
           <p></p>
           <h2>WHAT IT'S NOT</h2>
           <p></p>
-          <hr className="bottomLine"/>
         </div>
       </div>
     );
