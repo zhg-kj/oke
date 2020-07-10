@@ -1,102 +1,55 @@
-button {
-    width: 185px;
-    height: 60px;
+.frontPgButton {
+    width: 12.5vw;
     border: none;
     background-color: rgba(0, 0, 0, 0);
-    font-size: 20px;
+    font-size: 1.5vw;
     font-family: "Bebas Neue",sans-serif;
     font-weight: 100;
-    letter-spacing: 0.1em;
-    color: #8f8f8f;
+    letter-spacing: 0.2vw;
+    color: #ffeed8;
     text-shadow: 
-    .025vw 0vw .25vw #8f8f8f, .05vw 0vw .25vw #8f8f8f, .0075vw 0vw .25vw #8f8f8f, 
-    .025vw 0vw   0vw #5f5f5f, .05vw 0vw   0vw #5f5f5f, .0075vw 0vw   0vw #5f5f5f,
-    .025vw 0vw   1vw #2e2e2e, .05vw 0vw   1vw #2e2e2e, .0075vw 0vw   5vw #2e2e2e; 
-    border-radius: 0.25rem;
+        .025vw 0vw .25vw #ffeed8, .05vw 0vw .25vw #ffeed8, .0075vw 0vw .25vw #ffeed8, 
+        .025vw 0vw   0vw #f2b457, .05vw 0vw   0vw #f2b457, .0075vw 0vw   0vw #f2b457,
+        .025vw 0vw   1vw #a5620a, .05vw 0vw   1vw #a5620a, .0075vw 0vw   5vw #a5620a; 
+    border-radius: 0.3vw;
+    filter: contrast(0%);
+    transition: box-shadow 0.3s linear;
 }
 
 @keyframes lightUpText{
-    0%   { text-shadow: 
-        .025vw 0vw .25vw #8f8f8f, .05vw 0vw .25vw #8f8f8f, .0075vw 0vw .25vw #8f8f8f, 
-        .025vw 0vw   0vw #5f5f5f, .05vw 0vw   0vw #5f5f5f, .0075vw 0vw   0vw #5f5f5f,
-        .025vw 0vw   1vw #2e2e2e, .05vw 0vw   1vw #2e2e2e, .0075vw 0vw   5vw #2e2e2e; }
-    15%   { text-shadow: 
-        .025vw 0vw .25vw #ffeed8, .05vw 0vw .25vw #ffeed8, .0075vw 0vw .25vw #ffeed8, 
-        .025vw 0vw   0vw #f2b457, .05vw 0vw   0vw #f2b457, .0075vw 0vw   0vw #f2b457,
-        .025vw 0vw   1vw #a5620a, .05vw 0vw   1vw #a5620a, .0075vw 0vw   5vw #a5620a; 
-        color: #ffeed8; }
-    30%  { text-shadow: 
-        .025vw 0vw .25vw #8f8f8f, .05vw 0vw .25vw #8f8f8f, .0075vw 0vw .25vw #8f8f8f, 
-        .025vw 0vw   0vw #5f5f5f, .05vw 0vw   0vw #5f5f5f, .0075vw 0vw   0vw #5f5f5f,
-        .025vw 0vw   1vw #2e2e2e, .05vw 0vw   1vw #2e2e2e, .0075vw 0vw   5vw #2e2e2e; 
-        color: #8f8f8f; }
-    45%  { text-shadow: 
-        .025vw 0vw .25vw #ffeed8, .05vw 0vw .25vw #ffeed8, .0075vw 0vw .25vw #ffeed8, 
-        .025vw 0vw   0vw #f2b457, .05vw 0vw   0vw #f2b457, .0075vw 0vw   0vw #f2b457,
-        .025vw 0vw   1vw #a5620a, .05vw 0vw   1vw #a5620a, .0075vw 0vw   5vw #a5620a; 
-        color: #ffeed8; }
-    60%  { text-shadow: 
-        .025vw 0vw .25vw #8f8f8f, .05vw 0vw .25vw #8f8f8f, .0075vw 0vw .25vw #8f8f8f, 
-        .025vw 0vw   0vw #5f5f5f, .05vw 0vw   0vw #5f5f5f, .0075vw 0vw   0vw #5f5f5f,
-        .025vw 0vw   1vw #2e2e2e, .05vw 0vw   1vw #2e2e2e, .0075vw 0vw   5vw #2e2e2e; 
-        color: #8f8f8f; }
-    100% { text-shadow: 
-        .025vw 0vw .25vw #ffeed8, .05vw 0vw .25vw #ffeed8, .0075vw 0vw .25vw #ffeed8, 
-        .025vw 0vw   0vw #f2b457, .05vw 0vw   0vw #f2b457, .0075vw 0vw   0vw #f2b457,
-        .025vw 0vw  .1vw #f2b457, .05vw 0vw  .1vw #f2b457, .0075vw 0vw  .1vw #f2b457,
-        .025vw 0vw   2vw #f2b457, .05vw 0vw   2vw #f2b457, .0075vw 0vw   2vw #f2b457, 
-        .025vw 0vw   1vw #a5620a, .05vw 0vw   1vw #a5620a, .0075vw 0vw   5vw #a5620a, 
-        .025vw 0vw   5vw #a5620a, .05vw 0vw  20vw #a5620a, .0075vw 0vw  10vw #a5620a,
-        .025vw 0vw  10vw #a5620a, .05vw 0vw  30vw #a5620a, .0075vw 0vw  10vw #a5620a; 
-        color: #ffeed8; }
+    0%{} 
+    30%, 60%  { filter: contrast(0%);}
+    15%, 45%   { filter: contrast(80%); }
+    100% { filter: contrast(100%); }
 }
 
-button:hover {
+.frontPgButton:hover {
     animation: lightUpText 0.6s linear forwards;
 }
 
-@keyframes buttonClick {
-    0%   { box-shadow:
-        0 0 0.1vw  0.4vw #ffeed8,   
-        0 0 0.4vw  0.6vw #f2b457, 
-        0 0   4vw  0.4vw #a5620a,
-        inset 0 0 1.5vw  0.4vw #a5620a,
-        inset 0 0 0.4vw  0.2vw #f2b457,
-        inset 0 0 0.5vw  0.2vw #ffeed8; }
-    50%  { box-shadow:
-        0 0 0.1vw  0.4vw #ffeed8,   
-        0 0 0.4vw  0.6vw #f2b457, 
-        0 0   4vw  0.4vw #a5620a,
-        inset 0 0 1.5vw  0.4vw #a5620a,
-        inset 0 0 0.4vw  0.2vw #f2b457,
-        inset 0 0 0.5vw  0.2vw #ffeed8; }
-    100% {}
-}
-
-button:focus {
+.frontPgButton:focus {
     outline: 0;
-    animation: buttonClick 0.6s linear;
-    text-shadow: 
-        .025vw 0vw .25vw #ffeed8, .05vw 0vw .25vw #ffeed8, .0075vw 0vw .25vw #ffeed8, 
-        .025vw 0vw   0vw #f2b457, .05vw 0vw   0vw #f2b457, .0075vw 0vw   0vw #f2b457,
-        .025vw 0vw  .1vw #f2b457, .05vw 0vw  .1vw #f2b457, .0075vw 0vw  .1vw #f2b457,
-        .025vw 0vw   2vw #f2b457, .05vw 0vw   2vw #f2b457, .0075vw 0vw   2vw #f2b457, 
-        .025vw 0vw   1vw #a5620a, .05vw 0vw   1vw #a5620a, .0075vw 0vw   5vw #a5620a, 
-        .025vw 0vw   5vw #a5620a, .05vw 0vw  20vw #a5620a, .0075vw 0vw  10vw #a5620a,
-        .025vw 0vw  10vw #a5620a, .05vw 0vw  30vw #a5620a, .0075vw 0vw  10vw #a5620a; 
-    color: #ffeed8; 
+    box-shadow:
+        0 0 0.025vw  0.2vw #ffeed8,   
+        0 0 0.2vw    0.3vw #f2b457, 
+        0 0   2vw    0.2vw #a5620a,
+        inset 0 0 0.5vw   0.2vw #a5620a,
+        inset 0 0 0.2vw   0.1vw #f2b457,
+        inset 0 0 0.25vw  0.1vw #ffeed8;
+    filter: contrast(100%);
 }
 
-input[type="text" i] {
+.roomCodeInput[type="text" i] {
     padding: none;
     color: #ffeed8;
     text-align: center;
+    font-size: 1vw;
     text-shadow:  
         .025vw 0vw   0.25vw #f2b457, .05vw 0vw   0.25vw #f2b457, .0075vw 0vw   0.25vw #f2b457,
         .025vw 0vw      1vw #a5620a, .05vw 0vw      1vw #a5620a, .0075vw 0vw      5vw #a5620a;
 }
 
-input:focus {
+.roomCodeInput:focus {
     outline: 0;
     box-shadow:
         0 0 0.1vw  0.4vw #ffeed8,   
@@ -107,7 +60,8 @@ input:focus {
         inset 0 0 0.5vw  0.2vw #ffeed8;
 }
 
-::placeholder {
+.roomCodeInput::placeholder {
+    font-size: 1vw;
     text-align: center;
     color: #ffeed8;
     text-shadow:  
@@ -117,18 +71,19 @@ input:focus {
 
 .generate {
     display: block;
-    margin: 1rem auto 2rem auto;
-    height: 1.5em;
+    margin: 1.2vw auto 2.4vw auto;
+    height: 2vw;
+    cursor: url(../pictures/finger.png), auto;
 }
 
 .createdRoom {
     display: block;
-    margin: 1rem auto;
-    height: 1.5em;
-    font-size: 20px;
+    margin: 1.2vw auto;
+    height: 1.8vw;
+    font-size: 1.5vw;
     font-family: "Bebas Neue",sans-serif;
     font-weight: 100;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.2vw;
     color: #ffeed8;
     text-shadow: 
         .025vw 0vw .25vw #ffeed8, .05vw 0vw .25vw #ffeed8, .0075vw 0vw .25vw #ffeed8, 
@@ -142,13 +97,14 @@ input:focus {
 
 .join {
     display: block;
-    margin: 1rem auto;
-    height: 1.5em;
+    margin: 1.2vw auto;
+    height: 2vw;
+    cursor: url(../pictures/finger.png), auto;
 }
 
 .roomCodeInput {
-    padding: 0.5rem;
-    border-radius: 0.25rem;
+    padding: 0.6vw;
+    border-radius: 0.3vw;
     background-color: rgba(0, 0, 0, 0);
     box-shadow:
         0 0 0.025vw  0.2vw #ffeed8,   
@@ -157,5 +113,6 @@ input:focus {
         inset 0 0 0.5vw   0.2vw #a5620a,
         inset 0 0 0.2vw   0.1vw #f2b457,
         inset 0 0 0.25vw  0.1vw #ffeed8;
-    margin: 1rem 1rem 1rem 1rem;
+    margin: 1.2vw auto 1.2vw auto;
+    width: 12.5vw;
 }

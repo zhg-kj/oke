@@ -43,7 +43,7 @@ export class JoinButton extends Component  {
                     onChange={this.handleInput.bind(this)}
                     value={this.state.enteredCode} 
                 />
-                <button className="join" onClick={()=>this.handleClick(this)}>JOIN</button>
+                <button className="join frontPgButton" onClick={()=>this.handleClick(this)}>JOIN</button>
             </div>
         );
     }

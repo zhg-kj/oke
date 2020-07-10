@@ -5,7 +5,7 @@ import QueueBox from './queueBox/queueBox.js';
 import io from "socket.io-client";
 import { Redirect } from "react-router-dom";
 
-export class KaraokeRoom extends Component {
+export class KareokeRoom extends Component {
     constructor(props){
         super(props);
 
@@ -171,27 +171,32 @@ export class KaraokeRoom extends Component {
 
         return (
             <div className="roomPage">
-                <div className='roomCornerText'>
+                <div className='roomCodeWrapper'>
                     <h1 className='roomCode'><strong>{this.state.activeRoom}</strong></h1>
-                    <h4 className='noCode'><strong>{this.state.defaultMessage}</strong></h4>
                 </div>
-                <div className='playerElements'>
-                    <ReactPlayer 
-                        ref={this.ref}
-                        url={currentVideo} 
-                        playing={playing} 
-                        onEnded={this.handleStop}
+                <div className="playerElementsWrapper">
+                    <div className='playerElements'>
+                        <ReactPlayer 
+                            ref={this.ref}
+                            url={currentVideo} 
+                            playing={playing} 
+                            onEnded={this.handleStop}
 
-                        className='reactPlayer'
-                        width={720}
-                        height={405}/>
-                    <QueueBox 
-                        getRoomCode={this.getRoomCode} 
-                        setQueue={this.setQueue} 
-                        queue={this.state.queue}
-                    />
-                    <button onClick={this.handlePlayPause}>{playing ? 'Pause' : 'Play'}</button>
-                    <button onClick={this.handleStop}>Skip</button>
+                            className='reactPlayer'
+                            width='52.7vw'
+                            height='29.64375vw'
+                        />
+                        <div className="playerCover"></div>
+                        <QueueBox 
+                            getRoomCode={this.getRoomCode} 
+                            setQueue={this.setQueue} 
+                            queue={this.state.queue}
+                        />
+                    </div>
+                </div>
+                <div className="playPauseWrapper">
+                    <button id={playing ? 'pause' : 'play'} onClick={this.handlePlayPause}></button>
+                    <button id="skip" onClick={this.handleStop}></button>
                     {/*<input
                         className='videoSlider'
                         type='range' min={0} max={0.999999} step='any'
@@ -206,4 +211,4 @@ export class KaraokeRoom extends Component {
     }
 }
 
-export default KaraokeRoom
+export default KareokeRoom

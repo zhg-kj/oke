@@ -1,0 +1,56 @@
+.noRoomWrapper {
+    height: 100vh;
+    width: 100vw;
+}
+
+.noRoom {
+    color: #DFDEDE;
+    font-family: "Bebas Neue",sans-serif;
+    font-size: 5.4vw;
+    text-shadow: 
+    .05vw 0vw .25vw #ffd8ff, .1vw 0vw .25vw #ffd8ff,  .2vw 0vw .25vw #ffd8ff, 
+    .05vw 0vw   0vw #d357f2, .1vw 0vw   0vw #d357f2,  .2vw 0vw   0vw #d357f2,
+    .05vw 0vw  .1vw #d357f2, .1vw 0vw  .1vw #d357f2,  .2vw 0vw  .1vw #d357f2,
+    .05vw 0vw   2vw #d357f2, .1vw 0vw   2vw #d357f2,  .2vw 0vw   2vw #d357f2, 
+    .05vw 0vw   1vw #790aa5, .1vw 0vw   1vw #790aa5,  .2vw 0vw   5vw #790aa5, 
+    .05vw 0vw   5vw #790aa5, .1vw 0vw  20vw #790aa5,  .2vw 0vw  10vw #790aa5,
+    .05vw 0vw  10vw #790aa5, .1vw 0vw  30vw #790aa5,  .2vw 0vw  10vw #790aa5;
+    width: 100vw;
+    position: absolute;
+    top: 40%;
+    transform: translateY(-50%);
+    text-align: center;
+    animation: flicker 1.5s linear infinite;
+}
+
+@keyframes flicker {
+	0%, 19.999%, 22%, 41.999%, 44%, 100% {
+		filter: contrast(100%);
+	}
+	20%, 21.999%, 42%, 43.999% {
+        filter: contrast(0%);
+    }
+}
+
+.goBack {
+    position: absolute;
+    left: 50%;
+    top: 55%;
+    transform: translateX(-50%);
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 3vw;
+    font-family: "Bebas Neue",sans-serif;
+    font-weight: 100;
+    letter-spacing: 0.3vw;
+    color: #ffeed8;
+    text-shadow: 
+        .025vw 0vw .25vw #ffeed8, .05vw 0vw .25vw #ffeed8, .0075vw 0vw .25vw #ffeed8, 
+        .025vw 0vw   0vw #f2b457, .05vw 0vw   0vw #f2b457, .0075vw 0vw   0vw #f2b457,
+        .025vw 0vw   1vw #a5620a, .05vw 0vw   1vw #a5620a, .0075vw 0vw   5vw #a5620a;
+    cursor: url(../frontPage/pictures/finger.png), auto;
+}
+
+.goBack:focus {
+    outline: none;
+}

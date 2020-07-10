@@ -1,0 +1,96 @@
+.queueBox {
+    display: inline-block;
+    position: absolute;
+    top: 0;
+    right: 10vw;
+    width: 22vw;
+    height: 29.64375vw;
+    background-color: rgba(255, 255, 255, 0.1);  
+    backdrop-filter: blur(5px);
+    box-shadow:
+        0 0 0.025vw  0.2vw #d357f2,   
+        0 0 0.2vw   0.3vw #d357f2, 
+        0 0   2vw   0.2vw #790aa5;
+    border-radius: 1.5vw;
+}
+
+.addQueue {
+    position: absolute;
+    margin: 0.73vw;
+    width: 3vw;
+    height: 3vw;
+    border-radius: 50%;
+    left: 0px;
+    color: #ffeed8;
+    box-shadow:
+        0 0 0.025vw  0.2vw #ffeed8,   
+        0 0 0.2vw    0.3vw #f2b457, 
+        0 0   2vw    0.2vw #a5620a,
+        inset 0 0 0.5vw   0.2vw #a5620a,
+        inset 0 0 0.2vw   0.1vw #f2b457,
+        inset 0 0 0.25vw  0.1vw #ffeed8;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+    text-shadow:  
+        .025vw 0vw   0.25vw #f2b457, .05vw 0vw   0.25vw #f2b457, .0075vw 0vw   0.25vw #f2b457;
+    font-size: 1.3vw;
+    cursor: url(../../frontPage/pictures/finger.png), auto;
+}
+
+.addQueueInput {
+    position: absolute;
+    margin: 0.73vw;
+    right: 0;
+    height: 3vw;
+    width: 14.5vw;
+    border-color: #ffeed8;
+    box-shadow:
+        0 0 0.2vw    0.3vw #f2b457, 
+        0 0   2vw    0.2vw #a5620a,
+        inset 0 0 0.5vw   0.2vw #a5620a,
+        inset 0 0 0.2vw   0.1vw #f2b457;
+    border-radius: 1.5vw;
+    border: none;
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.addQueueInput[type="text" i] {
+    padding: 0 1vw;
+    color: #ffeed8;
+    text-shadow:  
+        .025vw 0vw   0.25vw #f2b457, .05vw 0vw   0.25vw #f2b457, .0075vw 0vw   0.25vw #f2b457;
+    font-size: 1vw;
+}
+
+.addQueueInput::placeholder {
+    text-align: center;
+    color: #ffeed8;
+    text-shadow:  
+        .025vw 0vw   0.25vw #f2b457, .05vw 0vw   0.25vw #f2b457, .0075vw 0vw   0.25vw #f2b457;
+    font-size: 1vw;
+}
+
+.addQueue, .addQueueInput:focus {
+    outline: none;
+}
+
+.queues {
+    position: absolute;
+    top: 4.4vw;
+    width: 100%;
+    height: 83%;
+    text-align: center;
+    overflow-y: hidden;
+}
+
+.queuedSong {
+    display: block;
+    margin: 1.46vw 7.32vw;
+    color: #ffeed8;
+    font-family: "Bebas Neue",sans-serif;
+    font-size: 1vw;
+    text-shadow:  
+        .025vw 0vw   0.25vw #f2b457, .05vw 0vw   0.25vw #f2b457, .0075vw 0vw   0.25vw #f2b457;
+    letter-spacing: 0.04vw;
+    cursor: url(../../frontPage/pictures/finger.png), auto;
+}

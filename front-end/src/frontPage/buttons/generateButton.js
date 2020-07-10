@@ -44,7 +44,7 @@ export class GenerateButton extends Component {
     render() {
         return (
             <div>
-                <button className="generate" onClick={this.onCreateNewRoom}>CREATE</button>
+                <button className="generate frontPgButton" onClick={this.onCreateNewRoom}>CREATE</button>
                 <p className="createdRoom">{this.state.roomCode}</p>
             </div>
         );
