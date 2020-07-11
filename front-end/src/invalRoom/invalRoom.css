@@ -5,8 +5,8 @@
 
 .noRoom {
     color: #DFDEDE;
-    font-family: "Bebas Neue",sans-serif;
-    font-size: 5.4vw;
+    font-family: neon;
+    font-size: 10vw;
     font-weight: 100;
     letter-spacing: 0;
     text-shadow: 
@@ -17,11 +17,10 @@
         .05vw 0vw   1vw #790aa5, .1vw 0vw   1vw #790aa5,  .2vw 0vw   5vw #790aa5, 
         .05vw 0vw   5vw #790aa5, .1vw 0vw  20vw #790aa5,  .2vw 0vw  10vw #790aa5,
         .05vw 0vw  10vw #790aa5, .1vw 0vw  30vw #790aa5,  .2vw 0vw  10vw #790aa5;
-    width: 100vw;
-    text-align: center;
+    width: 70vw;
+    margin: 2vw;
     position: absolute;
-    top: 40%;
-    transform: translateY(-50%);
+    top: 0;
     animation: flicker 2s linear infinite;
 }
 
@@ -36,15 +35,15 @@
 
 .goBack {
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    bottom: 0;
+    margin: 1vw;
     border: none;
     background-color: rgba(0, 0, 0, 0);
     background-image: url(../frontPage/pictures/goback.png);
     background-size: cover;
-    width: 17vw;
-    height: 11.35vw;
+    width: 10.625vw;
+    height: 7.09375vw;
     cursor: url(../frontPage/pictures/finger.png), auto;
 }
 

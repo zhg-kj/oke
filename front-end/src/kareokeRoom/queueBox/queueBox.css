@@ -94,11 +94,3 @@
     letter-spacing: 0.1vw;
     cursor: url(../../frontPage/pictures/finger.png), auto;
 }
-@keyframes flash {
-    0% { opacity: 1; }
-    50% { opacity: 0; }
-    100% { opacity: 1; }
-}
-#skip:focus+.queuedSong {
-    animation: flash 1s linear 0s forwards;
-}

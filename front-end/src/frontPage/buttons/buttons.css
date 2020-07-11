@@ -28,15 +28,7 @@
 }
 
 .frontPgButton:focus {
-    outline: 0;
-    box-shadow:
-        0 0 0.025vw  0.2vw #ffeed8,   
-        0 0 0.2vw    0.3vw #f2b457, 
-        0 0   2vw    0.2vw #a5620a,
-        inset 0 0 0.5vw   0.2vw #a5620a,
-        inset 0 0 0.2vw   0.1vw #f2b457,
-        inset 0 0 0.25vw  0.1vw #ffeed8;
-    filter: contrast(100%);
+    outline: none;
 }
 
 .roomCodeInput[type="text" i] {
