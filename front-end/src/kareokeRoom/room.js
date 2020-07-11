@@ -23,7 +23,9 @@ export class KareokeRoom extends Component {
             currentVideo: null, //AKA URL
             played: 0,
             loaded: 0,
-            duration: 0
+            duration: 0,
+            volume: 0,
+            firstBuffer: true
         }
 
         this.getRoomCode = this.getRoomCode.bind(this);
@@ -55,7 +57,7 @@ export class KareokeRoom extends Component {
                 this.setState({redirect: '/closed'});
             } else {
                 this.setState({ currentVideo: null, playing: true }, () => {this.pausePlay(); this.load(newQueue);});
-                this.setState({queue:newQueue});
+                this.setState({queue:newQueue, firstBuffer:true, volume:0});
             }
         });
 
@@ -72,18 +74,18 @@ export class KareokeRoom extends Component {
         });
 
         //USE SLIDER
-        /*this.useSlider = (e) => {
-            this.socket.emit('USED_SLIDER', {
+        this.seekMouseUp = (e) => {
+            this.socket.emit('SEEK_TO', {
                 activeRoom: this.state.activeRoom,
                 played: this.state.played,
-                E: e
+                event: e
             });
         }
 
-        this.socket.on('RECEIVE_NEW_TIME', data => {
-            this.setState({played:data.newPlace});
-            this.player.seekTo(parseFloat(data.e.target.value));
-        });*/
+        this.socket.on('RECEIVE_SEEK', data => {
+            this.player.seekTo(data.event);
+            this.setState({played:data.played})
+        });
 
     }
 
@@ -125,6 +127,17 @@ export class KareokeRoom extends Component {
         });
     }
 
+    bufferStart = () => {
+        this.setState({playing: true});
+    }
+
+    bufferEnd = () => {
+        if(this.state.firstBuffer){
+            this.setState({playing: false, firstBuffer: false, volume:100});
+            this.player.seekTo(0)
+        }
+    }
+
     /***PLAY BUTTON***/
     handlePlayPause = () => {
         this.setState({ playing: !this.state.playing }, () => this.pausePlay());
@@ -136,33 +149,34 @@ export class KareokeRoom extends Component {
     }
 
     /***SLIDER***/
-    /*handleSeekMouseDown = e => {
+    handleSeekMouseDown = () => {
         this.setState({ seeking: true });
     }
     
     handleSeekChange = e => {
         this.setState({ played: parseFloat(e.target.value) });
     }
-    
+
     handleSeekMouseUp = e => {
+        let event = e.target.value;
         this.setState({ seeking: false });
-        this.useSlider(e);
+        this.seekMouseUp(event);
     }
 
     handleProgress = state => {
         console.log('onProgress', state)
         // We only want to update time slider if we are not currently seeking
         if (!this.state.seeking) {
-          this.setState(state)
+            this.setState(state)
         }
-    }*/
+    }
 
     ref = player => {
         this.player = player
     }
 
     render() {
-        const { currentVideo, playing } = this.state
+        const { currentVideo, playing, played, volume } = this.state
 
         if (this.state.redirect) {
             this.closeRoom();
@@ -180,7 +194,10 @@ export class KareokeRoom extends Component {
                             ref={this.ref}
                             url={currentVideo} 
                             playing={playing} 
+                            volume={volume}
                             onEnded={this.handleStop}
+                            onBufferEnd={this.bufferEnd}
+                            onReady={this.bufferStart}
 
                             className='reactPlayer'
                             width='52.7vw'
@@ -197,14 +214,13 @@ export class KareokeRoom extends Component {
                 <div className="playPauseWrapper">
                     <button id={playing ? 'pause' : 'play'} onClick={this.handlePlayPause}></button>
                     <button id="skip" onClick={this.handleStop}></button>
-                    {/*<input
-                        className='videoSlider'
-                        type='range' min={0} max={0.999999} step='any'
-                        value={played}
-                        onMouseDown={this.handleSeekMouseDown}
-                        onChange={this.handleSeekChange}
-                        onMouseUp={this.handleSeekMouseUp}
-                    />*/}
+                    <input
+                    type='range' min={0} max={0.999999} step='any'
+                    value={played}
+                    onMouseDown={this.handleSeekMouseDown}
+                    onChange={this.handleSeekChange}
+                    onMouseUp={this.handleSeekMouseUp}
+                    />
                 </div>
             </div>
         )

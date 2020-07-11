@@ -85,12 +85,20 @@
 
 .queuedSong {
     display: block;
-    margin: 1.46vw 7.32vw;
+    margin: 1.46vw 6vw;
     color: #ffeed8;
     font-family: "Bebas Neue",sans-serif;
-    font-size: 1vw;
+    font-size: 1.2vw;
     text-shadow:  
         .025vw 0vw   0.25vw #f2b457, .05vw 0vw   0.25vw #f2b457, .0075vw 0vw   0.25vw #f2b457;
-    letter-spacing: 0.04vw;
+    letter-spacing: 0.1vw;
     cursor: url(../../frontPage/pictures/finger.png), auto;
+}
+@keyframes flash {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+#skip:focus+.queuedSong {
+    animation: flash 1s linear 0s forwards;
 }

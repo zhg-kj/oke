@@ -8,7 +8,8 @@ export class GenerateButton extends Component {
         super(props);
 
         this.state = {
-            roomCode: '######'
+            roomCode: '######',
+            generated: false
         }
     }
 
@@ -35,7 +36,7 @@ export class GenerateButton extends Component {
             })
             .then(res => res.json())
             .then(list => this.props.onUpdateRooms(list));
-            this.setState({roomCode:newRoomCode})
+            this.setState({roomCode:newRoomCode, generated:true})
         } else {
             this.onCreateNewRoom();
         }
@@ -45,7 +46,7 @@ export class GenerateButton extends Component {
         return (
             <div>
                 <button className="generate frontPgButton" onClick={this.onCreateNewRoom}>CREATE</button>
-                <p className="createdRoom">{this.state.roomCode}</p>
+                <p className={this.state.generated ? 'generated':'notGenerated' }>{this.state.roomCode}</p>
             </div>
         );
     }

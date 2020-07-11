@@ -4,7 +4,7 @@
 
 .roomCodeWrapper {
     position: absolute;
-    height: 22vh;
+    height: 25vh;
     width: 100vw;
 }
 
@@ -68,7 +68,7 @@
 
 .playPauseWrapper {
     position: absolute;
-    height: 22vh;
+    height: 25vh;
     width: 100vw;
 }
 
@@ -87,8 +87,8 @@
     content: '';
     background-image: url(../frontPage/pictures/play.png);
     background-size: cover;
-    width: 4vw;
-    height: 4vw;
+    width: 5vw;
+    height: 5vw;
     filter: contrast(0%);
 }
 
@@ -100,8 +100,8 @@
     content: '';
     background-image: url(../frontPage/pictures/pause.png);
     background-size: cover;
-    width: 4vw;
-    height: 4vw;
+    width: 5vw;
+    height: 5vw;
     filter: contrast(0%);
 }
 
@@ -113,8 +113,8 @@
     content: '';
     background-image: url(../frontPage/pictures/skip.png);
     background-size: cover;
-    width: 5.47vw;
-    height: 4vw;
+    width: 5vw;
+    height: 5vw;
     filter: contrast(0%);
 }
 

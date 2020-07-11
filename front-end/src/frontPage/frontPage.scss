@@ -84,13 +84,6 @@ body{
   font-size: 2vw;
 }
 
-@keyframes lightUpBox {
-  0%{} 
-  30%, 60%  { filter: contrast(0%);}
-  15%, 45%   { filter: contrast(80%); }
-  100% { filter: contrast(100%); }
-}
-
 .buttonWrapper {
   position: absolute;
   top: 50vh;
@@ -108,11 +101,6 @@ body{
   padding: 1.2vw;
   height: 18vw;
   width: 16vw;
-  filter: contrast(0%);
-}
-
-.buttonWrapper:hover {
-  animation: lightUpBox 0.6s linear forwards;
 }
 
 .frontExplanation {

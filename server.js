@@ -80,24 +80,21 @@ io.on('connection', (socket) => {
     socket.on('PAUSE_PLAY', data => {
         const activeRoom = data.activeRoom;
         socket.join(activeRoom);
-        //this might cause a problem, rooms that have not used pause play may not be in sync because they haven't joined room
         let playingState = data.playing;
 
         io.to(activeRoom).emit('RECEIVE_PAUSE_PLAY', playingState);
     })
 
     //USE SLIDER
-    /*socket.on('USED_SLIDER', data => {
-        console.log('USE SLIDER REQUEST RECEIVED');
+    socket.on('SEEK_TO', data => {
         const activeRoom = data.activeRoom;
-        const e = data.E;
         socket.join(activeRoom);
-        //this might cause a problem, rooms that have not used slider may not be in sync because they haven't joined room
-        let newPlace = data.played;
 
-        io.to(activeRoom).emit('RECEIVE_PAUSE_PLAY', {newPlace, e});
-        console.log(newPlace, e);
-    })*/
+        io.to(activeRoom).emit('RECEIVE_SEEK', {
+            event: data.event,
+            played: data.played
+        });
+    })
 });
 
 //CONVERT JSON STRINGS
