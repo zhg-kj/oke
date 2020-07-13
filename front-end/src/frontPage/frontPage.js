@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import Microphone from './pictures/microphone.png';
+import GithubLogo from './pictures/githubLogo.png';
+import mailIcon from './pictures/mailIcon.png';
 import './frontPage.scss';
 import GenerateButton from './buttons/generateButton';
 import JoinButton from './buttons/joinButton';
@@ -9,7 +11,8 @@ export class FrontPage extends Component {
     super(props);
 
     this.state = {
-      roomList: []
+      roomList: [],
+      cookieShow: "visible"
     };
 
     this.onJoinRoom = this.onJoinRoom.bind(this);
@@ -44,6 +47,10 @@ export class FrontPage extends Component {
     return this.state.roomList;
   }
 
+  cookiesOnClick = () => {
+    this.setState({cookieShow: "hidden"});
+  }
+
   render() {
     return (
       <div className="frontPage"> 
@@ -69,6 +76,20 @@ export class FrontPage extends Component {
           <p className="aboutText aboutCreators">OKE is designed and developed by two high-school students Kaijun Zhuang and Yiyun Jia, 
             who enjoy singing during their free time. Its goal is to provide a fun at-home karaoke experience that can 
             easily be used with friends to provide a safer, social distance friendly way to engage in karaoke.</p>
+        </div>
+        <div className="contactsWrapper">
+          <div className="githubWrapper">
+            <a target="_blank" rel="noopener noreferrer" href="https://github.com/zhg-kj/oke"><img className="githubLogo" src={GithubLogo} alt="GithubLogo" /></a>
+            <a target="_blank" rel="noopener noreferrer" href="https://github.com/zhg-kj/oke"><p className="githubLink">https://github.com/zhg-kj/oke</p></a>
+          </div>
+          <div className="emailWrapper">
+            <a target="_blank" rel="noopener noreferrer" href="mailto:okekaraoke@gmail.com"><img className="emailIcon" src={mailIcon} alt="mailIcon" /></a>
+            <a target="_blank" rel="noopener noreferrer" href="mailto:okekaraoke@gmail.com"><p className="emailLink">okekaraoke@gmail.com</p></a>
+          </div>
+        </div>
+        <div className="cookiesWrapper" style={{visibility: this.state.cookieShow}}>
+          <p className="cookiesMsg">Using this website means you agree to our use of cookies to enhance your experience.</p>
+          <button className="cookiesBtn" onClick={this.cookiesOnClick}>Accept</button>
         </div>
       </div>
     );

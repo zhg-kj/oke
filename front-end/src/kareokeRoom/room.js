@@ -200,17 +200,20 @@ export class KareokeRoom extends Component {
                             onReady={this.bufferStart}
                             onProgress={this.handleProgress}
 
-                            config={{
-                                youtube: {
-                                    playerVars: { disablekb:1, rel:0}
-                                },
-                            }}
-
                             className='reactPlayer'
                             width='52.7vw'
                             height='29.64375vw'
                         />
-                        <div className="playerCover"></div>
+                        <div className="playerCover">
+                            <input
+                                className="slider"
+                                type='range' min={0} max={0.999999} step='any'
+                                value={played}
+                                onMouseDown={this.handleSeekMouseDown}
+                                onChange={this.handleSeekChange}
+                                onMouseUp={this.handleSeekMouseUp}
+                            />
+                        </div>
                         <QueueBox 
                             getRoomCode={this.getRoomCode} 
                             setQueue={this.setQueue} 
@@ -221,13 +224,6 @@ export class KareokeRoom extends Component {
                 <div className="playPauseWrapper">
                     <button id={playing ? 'pause' : 'play'} onClick={this.handlePlayPause}></button>
                     <button id="skip" onClick={this.handleStop}></button>
-                    <input
-                        type='range' min={0} max={0.999999} step='any'
-                        value={played}
-                        onMouseDown={this.handleSeekMouseDown}
-                        onChange={this.handleSeekChange}
-                        onMouseUp={this.handleSeekMouseUp}
-                    />
                 </div>
             </div>
         )

@@ -134,7 +134,56 @@
     filter: contrast(100%);
 }
 
-.videoSlider {
+.slider {
+    -webkit-appearance: none;
     position: absolute;
-    bottom: 5%;
+    bottom: 3%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 97%;
+    opacity: 0.7;
+    cursor: url(../frontPage/pictures/finger.png), auto;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider:focus {
+    outline: none;
+}
+
+.slider::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    height: 0.44vw;
+    box-shadow:    
+        0 0 0.3vw   0.1vw #d357f2, 
+        0 0   1vw   0.3vw #790aa5;
+    background: #ffd8ff;
+    border-radius: 0.22vw;
+
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 1vw;
+    height: 1vw;
+    box-shadow:    
+        0 0 0.3vw   0.1vw #d357f2, 
+        0 0   1vw   0.3vw #790aa5;
+    border-radius: 0.5vw;
+    background: #ffd8ff;
+    margin-top: -0.25vw;
+}
+
+.slider:focus::-webkit-slider-runnable-track {
+    background: #ffd8ff;
+}
+
+.slider:focus::-webkit-slider-thumb {
+    background: #ffd8ff;
+}
+
+.playerCover:not(:hover) > .slider{
+    opacity: 0;
 }
