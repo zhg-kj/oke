@@ -42,6 +42,7 @@ export class JoinButton extends Component  {
                     placeholder='Enter Your Room Code'
                     onChange={this.handleInput.bind(this)}
                     value={this.state.enteredCode} 
+                    spellcheck="false"
                 />
                 <button className="join frontPgButton" onClick={()=>this.handleClick(this)}>JOIN</button>
             </div>

@@ -78,6 +78,7 @@ export class QueueButton extends Component {
                     onChange={this.handleURLInput.bind(this)}
                     value={this.state.enteredURL} 
                     onKeyPress={this.enterPressed.bind(this)}
+                    spellcheck="false"
                 />
                 <button className="addQueue" onClick={()=>this.handleClick(this)}>+</button>
             </div>
