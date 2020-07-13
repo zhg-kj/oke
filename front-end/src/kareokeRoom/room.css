@@ -76,7 +76,7 @@
     position: absolute;
     border: none;
     background-color: rgba(0, 0, 0, 0);
-    cursor: url(../frontPage/pictures/finger.png), auto;
+    cursor: url(../frontPage/pictures/finger.png) 18 1, auto;
 }
 
 #play {
@@ -142,7 +142,7 @@
     transform: translateX(-50%);
     width: 97%;
     opacity: 0.7;
-    cursor: url(../frontPage/pictures/finger.png), auto;
+    cursor: url(../frontPage/pictures/finger.png) 18 1, auto;
 }
 
 .slider:hover {

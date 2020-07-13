@@ -65,7 +65,7 @@
     display: block;
     margin: 1.2vw auto 2.4vw auto;
     height: 2vw;
-    cursor: url(../pictures/finger.png), auto;
+    cursor: url(../pictures/finger.png) 18 1, auto;
 }
 
 .generated {
@@ -111,7 +111,7 @@
     display: block;
     margin: 1.2vw auto;
     height: 2vw;
-    cursor: url(../pictures/finger.png), auto;
+    cursor: url(../pictures/finger.png) 18 1, auto;
 }
 
 .roomCodeInput {

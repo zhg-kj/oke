@@ -44,7 +44,7 @@
     background-size: cover;
     width: 10.625vw;
     height: 7.09375vw;
-    cursor: url(../frontPage/pictures/finger.png), auto;
+    cursor: url(../frontPage/pictures/finger.png) 18 1, auto;
 }
 
 .goBack:focus {

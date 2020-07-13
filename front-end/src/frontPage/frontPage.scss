@@ -15,7 +15,7 @@ body {
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* IE10+/Edge */
   user-select: none; /* Standard */
-  cursor: url(./pictures/arrow.png), auto;
+  cursor: url(./pictures/arrow.png) 3 3, auto;
   position: relative;
   &::before {
     content: ' ';
@@ -163,7 +163,7 @@ body {
 
 .contactsWrapper {
   position: relative;
-  height: 8vh;
+  height: 10vh;
   text-align: center;
   z-index: 2;
   background-color: #000000;
@@ -195,6 +195,7 @@ body {
   top: 42%;
   transform: translateY(-50%);
   width: 3vw;
+  cursor: url(./pictures/finger.png) 18 1, auto;
 }
 
 .githubLink {
@@ -205,6 +206,7 @@ body {
   font-family: "Bebas Neue", sans-serif;
   color: #ffffff;
   font-size: 1.2vw;
+  cursor: url(./pictures/finger.png) 18 1, auto;
 }
 
 .emailIcon {
@@ -213,6 +215,7 @@ body {
   top: 42%;
   transform: translateY(-50%);
   width: 3vw;
+  cursor: url(./pictures/finger.png) 18 1, auto;
 }
 
 .emailLink {
@@ -223,6 +226,7 @@ body {
   font-family: "Bebas Neue", sans-serif;
   color: #ffffff;
   font-size: 1.2vw;
+  cursor: url(./pictures/finger.png) 18 1, auto;
 }
 
 .cookiesWrapper {
@@ -257,7 +261,7 @@ body {
   letter-spacing: 0.05vw;
   background-color: #f2b457;
   border-radius: 0.2vw;
-  cursor: url(./pictures/finger.png), auto;
+  cursor: url(./pictures/finger.png) 18 1, auto;
 }
 
 .cookiesBtn:focus {
